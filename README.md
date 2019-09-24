@@ -1,5 +1,5 @@
 
-This image is based on linuxserver.io's guacamole image. It is largely inspired by linuxserver.io's calibre image. Check their work, it great!
+This image is based on [linuxserver.io](https://www.linuxserver.io/)'s [guacamole image](https://github.com/linuxserver/docker-baseimage-guacgui/). It is largely inspired by [linuxserver.io](https://www.linuxserver.io/)'s [calibre image](https://github.com/linuxserver/docker-calibre). Check their work, it great!
 
 [Hakuneko](https://github.com/manga-download/hakuneko/)  is a cross-platform downloader for manga and anime from various websites. HakuNeko was made to help users downloading media for circumstances that require offline usage. The philosophy is ad-hoc consumption, get it when you going to read/watch it. It is not meant to be a mass downloader to stock up thousands of chapters that are just collected and will probably never be read.
 
@@ -29,11 +29,13 @@ docker create \
   -e GUAC_USER=abc `#optional` \
   -e GUAC_PASS=900150983cd24fb0d6963f7d28e17f72 `#optional` \
   -p 8080:8080 \
+  --cap-add=CAP_SYS_ADMIN \
   -v /path/to/data:/config \
   --restart unless-stopped \
   shlagevuk/hakuneko
 ```
 
+Note that Hakuneko use chrome in electron framework, chrome need kernel right to clone namespace.
 
 ### docker-compose
 
@@ -52,6 +54,7 @@ services:
       - TZ=Europe/London
       - GUAC_USER=abc #optional
       - GUAC_PASS=900150983cd24fb0d6963f7d28e17f72 #optional
+      - cap-add=CAP_SYS_ADMIN 
     volumes:
       - /path/to/data:/config
     ports:
@@ -160,13 +163,6 @@ docker build \
   --pull \
   -t hakuneko:latest .
 ```
-
-The ARM variants can be built on x86_64 hardware using `multiarch/qemu-user-static`
-```
-docker run --rm --privileged multiarch/qemu-user-static:register --reset
-```
-
-Once registered you can define the dockerfile to use with `-f Dockerfile.aarch64`.
 
 ## Versions
 

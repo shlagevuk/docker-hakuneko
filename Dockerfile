@@ -25,13 +25,14 @@ RUN \
         HAKUNEKO_RELEASE=$(curl -sX GET "https://api.github.com/repos/manga-download/hakuneko/releases/latest" \
         | jq -r .tag_name); \
  fi && \
- HAKUNEKO_VERSION="(echo ${HAKUNEKO_RELEASE} | cut -c2-)" && \
- HAKUNEKO_URL="https://github.com/manga-download/hakuneko/releases/download/v${HAKUNEKO_VERSION}/hakuneko-desktop_${HAKUNEKO_VERSION}_linux_amd64.deb"
+ HAKUNEKO_VERSION="$(echo ${HAKUNEKO_RELEASE} | cut -c2-)" && \
+ HAKUNEKO_URL="https://github.com/manga-download/hakuneko/releases/download/v${HAKUNEKO_VERSION}/hakuneko-desktop_${HAKUNEKO_VERSION}_linux_amd64.deb" && \
+ echo "${HAKUNEKO_VERSION} ;; ${HAKUNEKO_URL}" && \
  curl -o /tmp/hakuneko.deb \
       -L "${HAKUNEKO_URL}" && \
  dpkg -i /tmp/hakuneko.deb && \
  dbus-uuidgen > /etc/machine-id && \
- echo "**** cleanup ****"
+ echo "**** cleanup ****" && \
  apt-get clean && \
  rm -rf \
         /tmp/* \

@@ -6,4 +6,3 @@ mkdir -p /config/.config/
 # permissions
 chown -R abc:abc \
 	/config \
-	/opt/calibre
