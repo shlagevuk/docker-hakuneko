@@ -12,6 +12,10 @@ ENV HAKUNEKO_VERSION="6.1.7"
 
 RUN \
  echo "**** install runtime packages ****" && \
+ mkdir -p /var/cache/tomcat8 /tmp/tomcat8-tomcat8-tmp /var/lib/tomcat8/work/Catalina/localhost && \
+ ln -s /var/lib/tomcat8/common /usr/share/tomcat8/common && \
+ ln -s /var/lib/tomcat8/server /usr/share/tomcat8/server && \
+ ln -s /var/lib/tomcat8/shared /usr/share/tomcat8/shared && \
  apt-get update && \
  apt-get install -y \
         dbus \
