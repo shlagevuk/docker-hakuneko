@@ -28,6 +28,7 @@ docker create \
   -e TZ=Europe/London \
   -e GUAC_USER=abc `#optional` \
   -e GUAC_PASS=900150983cd24fb0d6963f7d28e17f72 `#optional` \
+  -e APPNAME="hakuneko-desktop" \
   -p 8080:8080 \
   --cap-add=CAP_SYS_ADMIN \
   -v /path/to/data:/config \
@@ -55,6 +56,7 @@ services:
       - GUAC_USER=abc #optional
       - GUAC_PASS=900150983cd24fb0d6963f7d28e17f72 #optional
       - cap-add=CAP_SYS_ADMIN 
+      - APPNAME="hakuneko-desktop" 
     volumes:
       - /path/to/data:/config
     ports:
@@ -90,7 +92,7 @@ In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as bel
 ```
 
 
-&nbsp;
+
 ## Application Setup
 
 This image sets up hakuneko desktop app and makes its interface available via Guacamole server in the browser. The interface is available at `http://your-ip:8080`.
@@ -166,4 +168,6 @@ docker build \
 
 ## Versions
 
+* **06.10.20:** - Fix docker create command and minor change
+* **29.09.20:** - Fix blank page thanks to akhan23wgu
 * **24.09.19:** - Initial release.

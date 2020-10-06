@@ -6,7 +6,7 @@ ARG VERSION
 ARG HAKUNEKO_RELEASE
 LABEL build_version="hakuneko with guacamole version:- ${VERSION} Build-date:- ${BUILD_DATE}"
 LABEL maintainer="shlagevuk"
-ENV APPNAME="hakuneko"
+ENV APPNAME="hakuneko-desktop"
 ENV HAKUNEKO_VERSION="6.1.7"
 
 

@@ -10,5 +10,5 @@ fdmove -c 2 1
 s6-setuidgid abc
 s6-env DISPLAY=:1 HOME=/config
 
-# Execute Calibre
+# Execute hakuneko
 /usr/lib/hakuneko-desktop/hakuneko
